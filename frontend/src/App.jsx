@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import MyCourses from "./pages/MyCourses";
@@ -41,10 +41,210 @@ function AdminRoute() {
 
 function Home() {
   return (
-    <div style={{ padding: "40px" }}>
-      <h1>CampusFlow</h1>
-      <p>Welcome to CampusFlow</p>
-      <a href="/login">Login</a>
+    <div className="home-page">
+
+      {/* Navbar */}
+      <header className="home-navbar">
+        <div className="home-logo">
+          <div className="home-logo-icon">
+            <GraduationCap size={22} />
+          </div>
+          <span>CampusFlow</span>
+        </div>
+
+        <div className="home-nav-links">
+          <Link to="/login" className="home-login-link">
+            Login
+          </Link>
+
+          <Link to="/signup" className="home-signup-button">
+            Get Started
+          </Link>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <main className="home-hero">
+
+        <div className="hero-content">
+
+          <div className="hero-badge">
+            <Sparkles size={16} />
+            Smart College Management Platform
+          </div>
+
+          <h1>
+            Manage your college journey
+            <span> smarter with CampusFlow.</span>
+          </h1>
+
+          <p>
+            A modern college course registration and management system
+            designed to simplify course registration, academic tracking,
+            attendance, grades, timetable and campus updates.
+          </p>
+
+          <div className="hero-buttons">
+
+            <Link to="/signup" className="hero-primary-button">
+              Create Account
+              <span>→</span>
+            </Link>
+
+            <Link to="/login" className="hero-secondary-button">
+              Login to CampusFlow
+            </Link>
+
+          </div>
+
+          <div className="hero-features">
+
+            <div className="hero-feature">
+              <BookOpen size={19} />
+              <span>Course Registration</span>
+            </div>
+
+            <div className="hero-feature">
+              <CalendarDays size={19} />
+              <span>Smart Timetable</span>
+            </div>
+
+            <div className="hero-feature">
+              <GraduationCap size={19} />
+              <span>Academic Tracking</span>
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* Right side visual */}
+        <div className="hero-visual">
+
+          <div className="hero-card main-preview">
+
+            <div className="preview-header">
+              <div>
+                <span className="preview-small">STUDENT PORTAL</span>
+                <h3>Academic Overview</h3>
+              </div>
+
+              <div className="preview-avatar">
+                V
+              </div>
+            </div>
+
+            <div className="preview-stats">
+
+              <div className="preview-stat">
+                <div className="preview-stat-icon">
+                  <BookOpen size={18} />
+                </div>
+                <div>
+                  <strong>5</strong>
+                  <span>Courses</span>
+                </div>
+              </div>
+
+              <div className="preview-stat">
+                <div className="preview-stat-icon">
+                  <GraduationCap size={18} />
+                </div>
+                <div>
+                  <strong>8.6</strong>
+                  <span>GPA</span>
+                </div>
+              </div>
+
+              <div className="preview-stat">
+                <div className="preview-stat-icon">
+                  <CalendarDays size={18} />
+                </div>
+                <div>
+                  <strong>90%</strong>
+                  <span>Attendance</span>
+                </div>
+              </div>
+
+            </div>
+
+            <div className="preview-course">
+
+              <div className="preview-course-title">
+                <div className="preview-course-code">
+                  CS201
+                </div>
+
+                <div>
+                  <strong>Database Management Systems</strong>
+                  <span>4 Credits</span>
+                </div>
+              </div>
+
+              <span className="preview-status">
+                Registered
+              </span>
+
+            </div>
+
+            <div className="preview-course">
+
+              <div className="preview-course-title">
+                <div className="preview-course-code">
+                  CS301
+                </div>
+
+                <div>
+                  <strong>Web Technologies</strong>
+                  <span>4 Credits</span>
+                </div>
+              </div>
+
+              <span className="preview-status">
+                Registered
+              </span>
+
+            </div>
+
+          </div>
+
+          <div className="floating-card floating-card-one">
+            <Bell size={18} />
+            <div>
+              <strong>Campus Updates</strong>
+              <span>Stay informed</span>
+            </div>
+          </div>
+
+          <div className="floating-card floating-card-two">
+            <Sparkles size={18} />
+            <div>
+              <strong>AI Advisor</strong>
+              <span>Plan smarter</span>
+            </div>
+          </div>
+
+        </div>
+
+      </main>
+
+      {/* Bottom section */}
+      <section className="home-bottom">
+
+        <p>
+          One platform for your complete academic journey
+        </p>
+
+        <div className="home-bottom-items">
+          <span>Course Registration</span>
+          <span>Attendance</span>
+          <span>Grades</span>
+          <span>Timetable</span>
+          <span>Notifications</span>
+        </div>
+
+      </section>
+
     </div>
   );
 }
