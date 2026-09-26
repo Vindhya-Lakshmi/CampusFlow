@@ -1,38 +1,39 @@
 import { useEffect, useState } from "react";
 import { CalendarCheck, CheckCircle2, AlertCircle } from "lucide-react";
 import api from "../services/api";
+import { Link } from "react-router-dom";
 
 function Attendance() {
   const [attendance, setAttendance] = useState([]);
   const [loading, setLoading] = useState(true);
 
- useEffect(() => {
-  const fetchAttendance = async () => {
-    try {
-      // Get authenticated student
-      const userResponse = await api.get("/auth/me");
-      const user = userResponse.data.user;
+  useEffect(() => {
+    const fetchAttendance = async () => {
+      try {
+        // Get authenticated student
+        const userResponse = await api.get("/auth/me");
+        const user = userResponse.data.user;
 
-      if (!user.student_id) {
-        console.error("Student ID not found");
-        return;
+        if (!user.student_id) {
+          console.error("Student ID not found");
+          return;
+        }
+
+        // Get attendance for authenticated student
+        const response = await api.get(
+          `/attendance/student/${user.student_id}`
+        );
+
+        setAttendance(response.data.data || []);
+      } catch (error) {
+        console.error("Failed to fetch attendance:", error);
+      } finally {
+        setLoading(false);
       }
+    };
 
-      // Get attendance for authenticated student
-      const response = await api.get(
-        `/attendance/student/${user.student_id}`
-      );
-
-      setAttendance(response.data.data || []);
-    } catch (error) {
-      console.error("Failed to fetch attendance:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  fetchAttendance();
-}, []);
+    fetchAttendance();
+  }, []);
 
   const getPercentage = (attended, total) => {
     if (total === 0) return 0;
@@ -49,7 +50,11 @@ function Attendance() {
 
   return (
     <div className="inner-page">
+      <Link to="/dashboard">
+          ← Back to Dashboard
+        </Link>
       <div className="page-header">
+        
         <div>
           <h1>Attendance</h1>
           <p>Track your attendance for each course.</p>

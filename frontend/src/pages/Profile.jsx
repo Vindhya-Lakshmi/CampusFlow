@@ -8,6 +8,8 @@ import {
   Phone,
   Building2,
 } from "lucide-react";
+import { Link } from "react-router-dom";
+
 import api from "../services/api";
 
 function Profile() {
@@ -48,6 +50,12 @@ function Profile() {
 
   return (
     <div className="inner-page">
+      <Link
+        to="/dashboard"
+        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition"
+      >
+        ← Back to Dashboard
+      </Link>
       <div className="page-header">
         <div>
           <h1>My Profile</h1>
