@@ -93,10 +93,53 @@ const deleteCourse = async (req, res) => {
   }
 };
 
+
+const getAllCourseOfferings = async (req, res) => {
+  try {
+    const [rows] = await pool.query(`
+      SELECT
+        co.offering_id,
+        co.course_id,
+        c.course_code,
+        c.course_name,
+        c.credits,
+        co.faculty_id,
+        f.faculty_name,
+        co.semester,
+        co.academic_year,
+        co.capacity,
+        co.enrolled_count,
+        (co.capacity - co.enrolled_count) AS available_seats
+      FROM course_offering co
+      JOIN Course c
+        ON co.course_id = c.course_id
+      JOIN Faculty f
+        ON co.faculty_id = f.faculty_id
+      ORDER BY co.semester, c.course_name
+    `);
+
+    res.status(200).json({
+      success: true,
+      data: rows,
+    });
+  } catch (error) {
+    console.error("Failed to fetch course offerings:", error);
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch course offerings.",
+    });
+  }
+};
+
+
+
 module.exports = {
   getAllCourses,
   getCourseById,
   createCourse,
   updateCourse,
   deleteCourse,
+  getAllCourseOfferings,
+
 };

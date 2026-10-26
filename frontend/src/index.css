@@ -7773,3 +7773,33 @@ a {
 }
 
 
+
+
+.back-dashboard-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 10px 16px;
+  border: 1px solid #e0e5ef;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #4f46e5;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.back-dashboard-button:hover {
+  background: #eef4ff;
+}
+
+.back-dashboard-button svg {
+  flex-shrink: 0;
+}
+
+
+
+
+
